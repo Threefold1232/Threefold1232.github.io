@@ -1,0 +1,4 @@
+[Update]
+Version=1.0.1
+URL=https://arik-zillhardt.me
+
