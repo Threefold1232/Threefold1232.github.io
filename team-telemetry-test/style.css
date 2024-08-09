@@ -23,7 +23,6 @@ th {
     background-color: #444;
     color: #fff;
     padding: 5px;
-    padding-right: 10px;
     font-weight: bold;
 }
 
@@ -47,4 +46,8 @@ a.download-button:hover {
     background-color: #555;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
     transform: translateZ(50px);
+}
+
+.downloadLink {
+    padding-right: 20px;
 }
