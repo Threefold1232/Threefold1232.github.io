@@ -162,3 +162,45 @@ a.download-button:hover {
   padding-left: 80px;
   text-align: center;
 }
+
+.down-arrow {
+  position: fixed; /* Keep it fixed relative to the viewport */
+  top: calc(100vh - 60px);
+  left: calc(50% - 14px);
+  width: 28px; /* Adjust the width slightly */
+  height: 30px; /* Adjust the height */
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.down-arrow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-bottom: 4px solid #fff;
+  border-right: 4px solid #fff;
+  border-radius: 4px;
+  transform: rotate(45deg);
+}
+
+@keyframes jumpInfinite {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.down-arrow {
+  animation: jumpInfinite 1.75s infinite;
+}
+

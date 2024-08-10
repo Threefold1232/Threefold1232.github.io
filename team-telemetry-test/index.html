@@ -28,6 +28,8 @@
       </div>
     </div>
 
+    <div class="down-arrow" id="down-arrow"></div>
+
     <div class="downloads">
       <h1>Downloads</h1>
       <table>
@@ -136,31 +138,68 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const elements = document.querySelectorAll('.downloads, .installation');
-      
-          function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-              rect.top >= 0 &&
-              rect.left >= 0 &&
-              rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-              rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(".downloads, .installation");
+
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          const buffer = 50; // Adjust this value to control how early the animation triggers
+          return (
+            rect.top >= -buffer &&
+            rect.left >= -buffer &&
+            rect.bottom <=
+              (window.innerHeight || document.documentElement.clientHeight) +
+                buffer &&
+            rect.right <=
+              (window.innerWidth || document.documentElement.clientWidth) +
+                buffer
+          );
+        }
+
+        function checkElements() {
+          elements.forEach((el) => {
+            if (isElementInViewport(el)) {
+              el.classList.add("slide-in");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", checkElements);
+        window.addEventListener("resize", checkElements);
+        checkElements(); // Initial check
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const downArrow = document.getElementById("down-arrow");
+
+        // Function to hide the arrow and prevent it from coming back
+        function hideArrowPermanently() {
+          downArrow.style.opacity = "0";
+          downArrow.style.pointerEvents = "none";
+          setTimeout(() => downArrow.remove(), 500); // Wait for opacity transition, then remove
+        }
+
+        // Function to check scroll position and hide the arrow
+        function checkScroll() {
+          if (window.scrollY > 100) {
+            // Adjust the value '100' to control when the arrow disappears
+            hideArrowPermanently();
+            window.removeEventListener("scroll", checkScroll); // Remove scroll listener after hiding
           }
-      
-          function checkElements() {
-            elements.forEach(el => {
-              if (isElementInViewport(el)) {
-                el.classList.add('slide-in');
-              }
-            });
-          }
-      
-          window.addEventListener('scroll', checkElements);
-          window.addEventListener('resize', checkElements);
-          checkElements(); // Initial check
+        }
+
+        // Smooth scroll when the arrow is clicked
+        downArrow.addEventListener("click", function () {
+          window.scrollBy({
+            top: window.innerHeight / 2,
+            behavior: "smooth",
+          });
         });
-      </script>
+
+        // Check scroll position on scroll
+        window.addEventListener("scroll", checkScroll);
+      });
+    </script>
   </body>
 </html>
