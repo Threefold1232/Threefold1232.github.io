@@ -152,7 +152,7 @@ a.download-button:hover {
 /* Background styling for downloads and installation */
 .downloads,
 .installation,
-.firstSteps {
+.firstSteps, .manuals {
   background-color: #555;
   border-radius: 5px;
   padding: 20px;
