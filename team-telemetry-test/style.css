@@ -69,6 +69,7 @@ a.download-button:hover {
   border-radius: 5px;
   font-size: 1.1em;
   border: 1px solid #666;
+  animation: slideIn 0.75s ease-out forwards;
 }
 
 .navbar {
@@ -149,20 +150,7 @@ a.download-button:hover {
   animation: slideIn 0.75s ease-out forwards;
 }
 
-/* Background styling for downloads and installation */
-.downloads,
-.installation,
-.firstSteps,
-.manuals {
-  background-color: #555;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px 0;
-  opacity: 0;
-  border: 1px solid #666;
-  animation: fadeIn 0.5s ease forwards;
-}
-
+/* Fade-in for initial visibility */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -172,50 +160,27 @@ a.download-button:hover {
   }
 }
 
+/* Specific slide-in animations for different sections */
+.downloads,
+.installation,
+.firstSteps,
+.manuals {
+  background-color: #555;
+  border-radius: 5px;
+  padding: 0px 30px 30px 30px;
+  margin: 40px 0; /* Reduced margin for downloads */
+  opacity: 0;
+  border: 1px solid #666;
+  animation: slideIn 0.75s ease-out forwards;
+}
+
+.downloads {
+  margin-top: 20px; /* Specific margin for downloads */
+}
+
 .logo {
   padding-left: 80px;
   text-align: center;
-}
-
-.down-arrow {
-  position: fixed;
-  top: calc(100vh - 60px);
-  left: calc(50% - 14px);
-  width: 28px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.down-arrow:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 16px;
-  height: 16px;
-  border-bottom: 4px solid #fff;
-  border-right: 4px solid #fff;
-  border-radius: 4px;
-  transform: rotate(45deg);
-}
-
-@keyframes jumpInfinite {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.down-arrow {
-  animation: jumpInfinite 1.75s ease-in-out infinite;
 }
 
 .iframe-container {
